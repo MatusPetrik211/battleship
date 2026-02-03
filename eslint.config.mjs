@@ -27,7 +27,7 @@ export default defineConfig([
       "no-useless-escape": "warn",
       "no-irregular-whitespace": "warn",
       "no-unused-vars": "warn",
-      "no-undef": "none",
+      "no-undef": "off",
       "camelcase": "warn",
       "curly": "warn",
     },

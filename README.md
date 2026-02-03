@@ -1,11 +1,7 @@
-# repo template
+# battleship
+This battleship game is made with HTML, CSS, Javascript and Jest
 
-This is a template repository. It make it easier to create a new project with the dependencies I need  
-The dependencies in this template are:
-
-- npm
-- webpack
-- eslint
-- prettier
-- jest
-- babel
+## Goals of this project
+- Learn TDD
+- Learn Jest
+- Create a simple game

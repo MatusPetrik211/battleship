@@ -1,9 +1,23 @@
 import "./styles.css";
 
-document.getElementById("app").textContent = "Hello, Webpack!";
+function Ship(length) {
+  let hitCount = 0;
+  let sank = false;
 
-if (1 === 1) {
-  alert("hello");
-} else {
-  alert(no);
+  function hit() {
+    hitCount++;
+    return hitCount
+  }
+
+  function isSunk() {
+    sank = hitCount >= length ? true : false;
+    return sank
+  }
+
+  return {
+    isSunk,
+    hit,
+  }
 }
+
+

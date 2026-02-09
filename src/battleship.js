@@ -1,5 +1,3 @@
-import "./styles.css";
-
 function Ship(length) {
   let hitCount = 0;
   let sank = false;
@@ -21,7 +19,5 @@ function Ship(length) {
 }
 
 module.exports = {
-  Ship
+  Ship,
 }
-
-

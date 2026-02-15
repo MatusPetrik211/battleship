@@ -1,23 +1,20 @@
+export { Ship }
+
 function Ship(length) {
   let hitCount = 0;
-  let sank = false;
 
   function hit() {
-    hitCount++;
-    return hitCount
+    if (!this.isSunk()) {
+      hitCount++;
+    }
   }
 
   function isSunk() {
-    sank = hitCount >= length ? true : false;
-    return sank
+    return hitCount >= length
   }
 
   return {
     isSunk,
     hit,
   }
-}
-
-module.exports = {
-  Ship,
 }

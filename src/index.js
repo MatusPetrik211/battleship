@@ -1,3 +1,5 @@
+export { Ship }
+
 import "./styles.css";
 
 function Ship(length) {

@@ -48,3 +48,26 @@ describe("test Gameboard factory function", () => {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
   });
 });
+
+describe("test Gameboard placeShip method", () => {
+  let ship1 = Ship(4);
+  let ship2 = Ship(3);
+  let ship3 = Ship(2);
+
+  let gameboard = Gameboard();
+
+  test("basic tests", () => {
+    gameboard.placeShip(ship3, 0, 0);
+    expect(gameboard.board).toEqual([
+      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+  });
+});

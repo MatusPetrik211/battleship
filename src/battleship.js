@@ -30,7 +30,12 @@ function Gameboard() {
     board.push(row);
   }
 
+  function placeShip(ship, x, y) {
+
+  }
+
   return {
-    board
+    board,
+    placeShip,
   }
 }

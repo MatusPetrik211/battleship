@@ -2,6 +2,7 @@ export { Ship, Gameboard }
 
 function Ship(length) {
   let hitCount = 0;
+  let cords = [[0, 0], [0, 0]];
 
   function hit() {
     if (!this.isSunk()) {
@@ -16,22 +17,27 @@ function Ship(length) {
   return {
     isSunk,
     hit,
+    length,
+    cords,
   }
 }
 
 function Gameboard() {
-  const board = []
+  const board = Array.from({ length: 10 }, () => Array(10).fill(0));
 
-  for (let i = 0; i < 10; i++) {
-    let row = []
-    for (let j = 0; j < 10; j++) {
-      row.push(0);
+  function placeShip(ship, x, y, rotated = false) {
+    if (!rotated) {
+      for (let i = 0; i < ship.length; i++) {
+        board[y][x + i] = 1;
+        // if (x + i > board[y].length) {
+        //   board[y][x - i] = 1;
+        // } else {
+        //   board[y][x + i] = 1;
+        // }
+      }
     }
-    board.push(row);
-  }
 
-  function placeShip(ship, x, y) {
-
+    console.log(board);
   }
 
   return {

@@ -54,11 +54,11 @@ describe("test Gameboard placeShip method", () => {
   let ship2 = Ship(3);
   let ship3 = Ship(2);
 
-  let gameboard = Gameboard();
+  const gameboard1 = Gameboard();
 
-  test("basic tests", () => {
-    gameboard.placeShip(ship3, 0, 0);
-    expect(gameboard.board).toEqual([
+  test("tests for ships placed by default (horizontally)", () => {
+    gameboard1.placeShip(ship3, 0, 0);
+    expect(gameboard1.board).toEqual([
       [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -69,5 +69,80 @@ describe("test Gameboard placeShip method", () => {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+    
+    console.log(gameboard1.board);
+
+    gameboard1.placeShip(ship1, 6, 5);
+    expect(gameboard1.board).toEqual([
+      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+
+    console.log(gameboard1.board);
+
+    gameboard1.placeShip(ship2, 3, 9);
+    expect(gameboard1.board).toEqual([
+      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 1, 1, 0, 0, 0, 0]]);
+
+    console.log(gameboard1.board);
   });
+
+    const gameboard2 = Gameboard();
+
+    test("tests for ships placed by default where the x coordinate is out of range", () => {
+      gameboard2.placeShip(ship3, 9, 0);
+      expect(gameboard2.board).toEqual([
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+
+      gameboard2.placeShip(ship1, 7, 5);
+      expect(gameboard2.board).toEqual([
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
+
+      gameboard2.placeShip(ship2, 8, 9);
+      expect(gameboard2.board).toEqual([
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1]]);
+    });
 });

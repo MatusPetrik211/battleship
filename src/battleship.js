@@ -27,13 +27,13 @@ function Gameboard() {
 
   function placeShip(ship, x, y, rotated = false) {
     if (!rotated) {
+
+      if (x + ship.length > board[y].length) {
+          x = board[y].length - ship.length;
+      } 
+
       for (let i = 0; i < ship.length; i++) {
         board[y][x + i] = 1;
-        // if (x + i > board[y].length) {
-        //   board[y][x - i] = 1;
-        // } else {
-        //   board[y][x + i] = 1;
-        // }
       }
     }
 

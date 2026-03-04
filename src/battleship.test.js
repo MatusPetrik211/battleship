@@ -143,7 +143,7 @@ describe("test Gameboard placeShip method", () => {
   const gameboard3 = Gameboard();
 
   test("tests for ships placed vertically", () => {
-    gameboard3.placeShip(ship3, 0, 0, true);
+    gameboard3.placeShip(ship3, 0, 0, "V");
     expect(gameboard3.board).toEqual([
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -156,7 +156,7 @@ describe("test Gameboard placeShip method", () => {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
 
-    gameboard3.placeShip(ship1, 6, 5, true);
+    gameboard3.placeShip(ship1, 6, 5, "V");
     expect(gameboard3.board).toEqual([
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -169,7 +169,7 @@ describe("test Gameboard placeShip method", () => {
       [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
 
-    gameboard3.placeShip(ship2, 3, 7, true);
+    gameboard3.placeShip(ship2, 3, 7, "V");
     expect(gameboard3.board).toEqual([
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -186,7 +186,7 @@ describe("test Gameboard placeShip method", () => {
   const gameboard4 = Gameboard();
 
   test("tests for ships placed vertically where the y coordinate is out of range", () => {
-    gameboard4.placeShip(ship3, 0, 9, true);
+    gameboard4.placeShip(ship3, 0, 9, "V");
     expect(gameboard4.board).toEqual([
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -199,7 +199,7 @@ describe("test Gameboard placeShip method", () => {
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
 
-    gameboard4.placeShip(ship1, 6, 7, true);
+    gameboard4.placeShip(ship1, 6, 7, "V");
     expect(gameboard4.board).toEqual([
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -212,7 +212,7 @@ describe("test Gameboard placeShip method", () => {
       [1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 1, 0, 0, 0]]);
 
-    gameboard4.placeShip(ship2, 3, 8, true);
+    gameboard4.placeShip(ship2, 3, 8, "V");
     expect(gameboard4.board).toEqual([
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 

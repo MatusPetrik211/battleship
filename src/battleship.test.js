@@ -226,3 +226,20 @@ describe("test Gameboard placeShip method", () => {
       [1, 0, 0, 1, 0, 0, 1, 0, 0, 0]]);
   });
 });
+
+describe("test Gameboard receiveAttack", () => {
+  const ship1 = Ship(2);
+  const ship2 = Ship(3);
+  const ship3 = Ship(4);
+  const board1 = Gameboard();
+
+  board1.placeShip(ship1, 0, 0);
+  // console.log(ship1.cords);
+  board1.receiveAttack(0, 0);
+  board1.receiveAttack(1, 0);
+
+  test("basic test", () => {
+    expect(ship1.isSunk()).toBe(true);
+  });
+  
+});

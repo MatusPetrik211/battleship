@@ -2,12 +2,14 @@ export { Ship, Gameboard }
 
 function Ship(length) {
   let hitCount = 0;
-  let cords = [[0, 0], [0, 0]];
+  let startCords = [0, 0];
+  let rotation = "H";
 
   function hit() {
     if (!this.isSunk()) {
       hitCount++;
     }
+    console.log(hitCount);
   }
 
   function isSunk() {
@@ -18,11 +20,13 @@ function Ship(length) {
     isSunk,
     hit,
     length,
-    cords,
+    startCords,
+    rotation,
   }
 }
 
 function Gameboard() {
+  const ships = [];
   // creates a 2d array with the length of 10 x 10
   const board = Array.from({ length: 10 }, () => Array(10).fill(0));
 
@@ -32,17 +36,20 @@ function Gameboard() {
   }
 
   function placeShip(ship, x, y, rotation = "H") {
+    ship.startCords = [x, y];
+
+    ships.push(ship);
     // if ship is rotated by default (horizontally)
     if (rotation === "H") {
       x = clampPosition(x, ship.length);
-      ship.cords = [[x, y], [x + ship.length, y]];
+      ship.rotation = "H";
 
       for (let i = 0; i < ship.length; i++) {
         board[y][x + i] = 1;
       }
     } else if (rotation === "V") { // if ship is rotated vertically
       y = clampPosition(y, ship.length);
-      ship.cords = [[x, y], [x, y + ship.length]];
+      ship.rotation = "V";
 
       for (let i = 0; i < ship.length; i++) {
         board[y + i][x] = 1;
@@ -50,8 +57,40 @@ function Gameboard() {
     }
   }
 
+  function getShipPlacement(ship) {
+    const placementCords = [];
+    if (ship.rotation === "H") {
+      for (let i = 0; i < ship.length; i++) {
+        placementCords.push([ship.startCords[0] + i, ship.startCords[1]]);
+      }
+    } else if (ship.rotation === "V") {
+      for (let i = 0; i < ship.length; i++) {
+        placementCords.push([ship.startCords[0], ship.startCords[1] + i]);
+      }
+    }
+
+    return placementCords;
+  }
+
+  function receiveAttack(x, y) {
+    if (board[y][x] === 0) {
+      board[y][x] = "X";
+    } else if (board[y][x] === 1) {
+      for (const ship of ships) {
+        let shipPlacements = getShipPlacement(ship);
+        for (const placement of shipPlacements) {
+          if (placement[0] === x && placement[1] === y) {
+            console.log("Ship was hit!!");
+            ship.hit();
+          }
+        }
+      }
+    }
+  }
+
   return {
     board,
     placeShip,
+    receiveAttack,
   }
 }

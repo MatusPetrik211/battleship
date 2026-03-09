@@ -9,7 +9,7 @@ function Ship(length) {
     if (!this.isSunk()) {
       hitCount++;
     }
-    console.log(hitCount);
+    // console.log(hitCount);
   }
 
   function isSunk() {
@@ -36,8 +36,6 @@ function Gameboard() {
   }
 
   function placeShip(ship, x, y, rotation = "H") {
-    ship.startCords = [x, y];
-
     ships.push(ship);
     // if ship is rotated by default (horizontally)
     if (rotation === "H") {
@@ -55,6 +53,8 @@ function Gameboard() {
         board[y + i][x] = 1;
       }
     }
+
+    ship.startCords = [x, y];
   }
 
   function getShipPlacement(ship) {
@@ -80,7 +80,7 @@ function Gameboard() {
         let shipPlacements = getShipPlacement(ship);
         for (const placement of shipPlacements) {
           if (placement[0] === x && placement[1] === y) {
-            console.log("Ship was hit!!");
+            // console.log("Ship was hit!!");
             ship.hit();
           }
         }

@@ -2,7 +2,7 @@ export { Ship, Gameboard }
 
 function Ship(length) {
   let hitCount = 0;
-  let startCords = [0, 0];
+  let startCoords = [0, 0];
   let rotation = "H";
 
   function hit() {
@@ -20,7 +20,7 @@ function Ship(length) {
     isSunk,
     hit,
     length,
-    startCords,
+    startCoords,
     rotation,
   }
 }
@@ -54,22 +54,22 @@ function Gameboard() {
       }
     }
 
-    ship.startCords = [x, y];
+    ship.startCoords = [x, y];
   }
 
   function getShipPlacement(ship) {
-    const placementCords = [];
+    const placementCoords = [];
     if (ship.rotation === "H") {
       for (let i = 0; i < ship.length; i++) {
-        placementCords.push([ship.startCords[0] + i, ship.startCords[1]]);
+        placementCoords.push([ship.startCoords[0] + i, ship.startCoords[1]]);
       }
     } else if (ship.rotation === "V") {
       for (let i = 0; i < ship.length; i++) {
-        placementCords.push([ship.startCords[0], ship.startCords[1] + i]);
+        placementCoords.push([ship.startCoords[0], ship.startCoords[1] + i]);
       }
     }
 
-    return placementCords;
+    return placementCoords;
   }
 
   function receiveAttack(x, y) {

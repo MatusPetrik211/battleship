@@ -75,7 +75,9 @@ function Gameboard() {
   function receiveAttack(x, y) {
     if (board[y][x] === 0) {
       board[y][x] = "X";
-    } else if (board[y][x] === 1) {
+    } else if (board[y][x] === 1 || board[y][x] === "X") {
+      board[y][x] = "X";
+
       for (const ship of ships) {
         let shipPlacements = getShipPlacement(ship);
         for (const placement of shipPlacements) {

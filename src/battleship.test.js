@@ -236,8 +236,8 @@ describe("test Gameboard receiveAttack", () => {
   board1.placeShip(ship1, 0, 0);
   board1.placeShip(ship2, 9, 9);
   board1.placeShip(ship3, 5, 8);
-  // console.log(ship1.startCords);
-  // console.log(ship2.startCords);
+  // console.log(ship1.startCoords);
+  // console.log(ship2.startCoords);
 
   test("test for horizontally placed ships", () => {
     expect(ship1.isSunk()).toBe(false);
@@ -275,7 +275,7 @@ describe("test Gameboard receiveAttack", () => {
   board2.placeShip(ship5, 9, 9, "V");
   board2.placeShip(ship6, 3, 4, "V");
 
-  console.log(ship4.startCords);
+  console.log(ship4.startCoords);
 
   test("test for vertically placed ships", () => {
     expect(ship4.isSunk()).toBe(false);
@@ -301,5 +301,35 @@ describe("test Gameboard receiveAttack", () => {
     expect(ship6.isSunk()).toBe(false);
     board2.receiveAttack(3, 6);
     expect(ship6.isSunk()).toBe(true);
+  });
+
+  const gameboard3 = Gameboard();
+
+  test("test missed attacks on the gameboard", () => {
+    gameboard3.receiveAttack(0, 0);
+    gameboard3.receiveAttack(9, 9);
+    gameboard3.receiveAttack(0, 4);
+    gameboard3.receiveAttack(4, 4);
+    gameboard3.receiveAttack(4, 5);
+    gameboard3.receiveAttack(1, 1);
+    gameboard3.receiveAttack(2, 2);
+    gameboard3.receiveAttack(9, 8);
+    gameboard3.receiveAttack(6, 7);
+    gameboard3.receiveAttack(8, 8);
+    gameboard3.receiveAttack(7, 7);
+
+    console.log(gameboard3.board);
+
+    expect(gameboard3.board).toEqual([
+      ["X", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, "X", 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, "X", 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      ["X", 0, 0, 0, "X", 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, "X", 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, "X", "X", 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, "X", "X"],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, "X"]]);
   });
 });

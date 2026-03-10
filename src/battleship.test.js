@@ -236,8 +236,8 @@ describe("test Gameboard receiveAttack", () => {
   board1.placeShip(ship1, 0, 0);
   board1.placeShip(ship2, 9, 9);
   board1.placeShip(ship3, 5, 8);
-  console.log(ship1.startCords);
-  console.log(ship2.startCords);
+  // console.log(ship1.startCords);
+  // console.log(ship2.startCords);
 
   test("test for horizontally placed ships", () => {
     expect(ship1.isSunk()).toBe(false);
@@ -265,13 +265,41 @@ describe("test Gameboard receiveAttack", () => {
     expect(ship3.isSunk()).toBe(true);
   });
 
-  // board1.placeShip(ship1, 6, 7, "V");
+  const ship4 = Ship(2);
+  const ship5 = Ship(3);
+  const ship6 = Ship(4);
 
-  // test("test for vertically placed ships", () => {
-  //   expect(ship1.isSunk()).toBe(false);
-  //   board1.receiveAttack(6, 7);
-  //   expect(ship1.isSunk()).toBe(false);
-  //   board1.receiveAttack(6, 8);
-  //   expect(ship1.isSunk()).toBe(true);
-  // });
+  const board2 = Gameboard();
+
+  board2.placeShip(ship4, 6, 7, "V");
+  board2.placeShip(ship5, 9, 9, "V");
+  board2.placeShip(ship6, 3, 4, "V");
+
+  console.log(ship4.startCords);
+
+  test("test for vertically placed ships", () => {
+    expect(ship4.isSunk()).toBe(false);
+    board2.receiveAttack(6, 7);
+    expect(ship4.isSunk()).toBe(false);
+    board2.receiveAttack(6, 8);
+    expect(ship4.isSunk()).toBe(true);
+
+    expect(ship5.isSunk()).toBe(false);  
+    board2.receiveAttack(9, 9);
+    expect(ship5.isSunk()).toBe(false);
+    board2.receiveAttack(9, 8);         
+    expect(ship5.isSunk()).toBe(false);
+    board2.receiveAttack(9, 7);
+    expect(ship5.isSunk()).toBe(true);
+
+    expect(ship6.isSunk()).toBe(false);  
+    board2.receiveAttack(3, 4);
+    expect(ship6.isSunk()).toBe(false);
+    board2.receiveAttack(3, 7);         
+    expect(ship6.isSunk()).toBe(false);
+    board2.receiveAttack(3, 5);
+    expect(ship6.isSunk()).toBe(false);
+    board2.receiveAttack(3, 6);
+    expect(ship6.isSunk()).toBe(true);
+  });
 });

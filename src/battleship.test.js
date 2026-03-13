@@ -227,7 +227,7 @@ describe("test Gameboard placeShip method", () => {
   });
 });
 
-describe("test Gameboard receiveAttack", () => {
+describe("test Gameboard receiveAttack method", () => {
   const ship1 = Ship(2);
   const ship2 = Ship(3);
   const ship3 = Ship(4);
@@ -332,4 +332,27 @@ describe("test Gameboard receiveAttack", () => {
       [0, 0, 0, 0, 0, 0, 0, 0, "X", "X"],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, "X"]]);
   });
+});
+
+describe("test Gameboard allShipsSunked method", () => {
+  const emptyGameboard = Gameboard();
+  const gameboardWithShips = Gameboard();
+
+  const ship1 = Ship(2);
+  const ship2 = Ship(3);
+  const ship3 = Ship(4);
+
+  gameboardWithShips.placeShip(ship1, 0, 0);
+  gameboardWithShips.placeShip(ship2, 0, 1);
+  gameboardWithShips.placeShip(ship3, 0, 2);
+
+
+  test("test for empty gameboard", () => {
+    expect(emptyGameboard.allShipsSunk()).toBe(true);
+  });
+
+  test("test for gameboard with ships", () => {
+    expect(gameboardWithShips.allShipsSunk()).toBe(false);
+  });
+
 });

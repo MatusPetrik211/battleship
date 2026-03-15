@@ -355,4 +355,20 @@ describe("test Gameboard allShipsSunked method", () => {
     expect(gameboardWithShips.allShipsSunk()).toBe(false);
   });
 
+  const gameboard1 = Gameboard();
+
+  const ship5 = Ship(2);
+
+  gameboard1.placeShip(ship5, 0, 0);
+
+  test.only("test for gameboard with ship that is hit later", () => {
+    expect(gameboard1.allShipsSunk()).toBe(false);
+    gameboard1.receiveAttack(0, 0);
+    gameboard1.receiveAttack(1, 0);
+    console.log(ship5.isSunk());
+    console.log(gameboard1.board);
+    expect(gameboard1.allShipsSunk()).toBe(true);
+  });
+
+
 });

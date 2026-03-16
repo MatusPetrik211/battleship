@@ -231,37 +231,37 @@ describe("test Gameboard receiveAttack method", () => {
   const ship1 = Ship(2);
   const ship2 = Ship(3);
   const ship3 = Ship(4);
-  const board1 = Gameboard();
+  const gameboard1 = Gameboard();
 
-  board1.placeShip(ship1, 0, 0);
-  board1.placeShip(ship2, 9, 9);
-  board1.placeShip(ship3, 5, 8);
+  gameboard1.placeShip(ship1, 0, 0);
+  gameboard1.placeShip(ship2, 9, 9);
+  gameboard1.placeShip(ship3, 5, 8);
   // console.log(ship1.startCoords);
   // console.log(ship2.startCoords);
 
   test("test for horizontally placed ships", () => {
     expect(ship1.isSunk()).toBe(false);
-    board1.receiveAttack(0, 0);
+    gameboard1.receiveAttack(0, 0);
     expect(ship1.isSunk()).toBe(false);
-    board1.receiveAttack(1, 0);
+    gameboard1.receiveAttack(1, 0);
     expect(ship1.isSunk()).toBe(true);
 
     expect(ship2.isSunk()).toBe(false);
-    board1.receiveAttack(9, 9);
+    gameboard1.receiveAttack(9, 9);
     expect(ship2.isSunk()).toBe(false);
-    board1.receiveAttack(7, 9);
+    gameboard1.receiveAttack(7, 9);
     expect(ship2.isSunk()).toBe(false);
-    board1.receiveAttack(8, 9);
+    gameboard1.receiveAttack(8, 9);
     expect(ship2.isSunk()).toBe(true);
 
 
-    board1.receiveAttack(5, 8);
+    gameboard1.receiveAttack(5, 8);
     expect(ship3.isSunk()).toBe(false);
-    board1.receiveAttack(6, 8);
+    gameboard1.receiveAttack(6, 8);
     expect(ship3.isSunk()).toBe(false);
-    board1.receiveAttack(8, 8);
+    gameboard1.receiveAttack(8, 8);
     expect(ship3.isSunk()).toBe(false);
-    board1.receiveAttack(7, 8);
+    gameboard1.receiveAttack(7, 8);
     expect(ship3.isSunk()).toBe(true);
   });
 
@@ -269,37 +269,37 @@ describe("test Gameboard receiveAttack method", () => {
   const ship5 = Ship(3);
   const ship6 = Ship(4);
 
-  const board2 = Gameboard();
+  const gameboard2 = Gameboard();
 
-  board2.placeShip(ship4, 6, 7, "V");
-  board2.placeShip(ship5, 9, 9, "V");
-  board2.placeShip(ship6, 3, 4, "V");
+  gameboard2.placeShip(ship4, 6, 7, "V");
+  gameboard2.placeShip(ship5, 9, 9, "V");
+  gameboard2.placeShip(ship6, 3, 4, "V");
 
   console.log(ship4.startCoords);
 
   test("test for vertically placed ships", () => {
     expect(ship4.isSunk()).toBe(false);
-    board2.receiveAttack(6, 7);
+    gameboard2.receiveAttack(6, 7);
     expect(ship4.isSunk()).toBe(false);
-    board2.receiveAttack(6, 8);
+    gameboard2.receiveAttack(6, 8);
     expect(ship4.isSunk()).toBe(true);
 
     expect(ship5.isSunk()).toBe(false);  
-    board2.receiveAttack(9, 9);
+    gameboard2.receiveAttack(9, 9);
     expect(ship5.isSunk()).toBe(false);
-    board2.receiveAttack(9, 8);         
+    gameboard2.receiveAttack(9, 8);         
     expect(ship5.isSunk()).toBe(false);
-    board2.receiveAttack(9, 7);
+    gameboard2.receiveAttack(9, 7);
     expect(ship5.isSunk()).toBe(true);
 
     expect(ship6.isSunk()).toBe(false);  
-    board2.receiveAttack(3, 4);
+    gameboard2.receiveAttack(3, 4);
     expect(ship6.isSunk()).toBe(false);
-    board2.receiveAttack(3, 7);         
+    gameboard2.receiveAttack(3, 7);         
     expect(ship6.isSunk()).toBe(false);
-    board2.receiveAttack(3, 5);
+    gameboard2.receiveAttack(3, 5);
     expect(ship6.isSunk()).toBe(false);
-    board2.receiveAttack(3, 6);
+    gameboard2.receiveAttack(3, 6);
     expect(ship6.isSunk()).toBe(true);
   });
 
@@ -318,7 +318,7 @@ describe("test Gameboard receiveAttack method", () => {
     gameboard3.receiveAttack(8, 8);
     gameboard3.receiveAttack(7, 7);
 
-    console.log(gameboard3.board);
+    // console.log(gameboard3.board);
 
     expect(gameboard3.board).toEqual([
       ["X", 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -361,11 +361,12 @@ describe("test Gameboard allShipsSunked method", () => {
 
   gameboard1.placeShip(ship5, 0, 0);
 
-  test.only("test for gameboard with ship that is hit later", () => {
+  test("test for gameboard with ship that is hit later", () => {
     expect(gameboard1.allShipsSunk()).toBe(false);
     gameboard1.receiveAttack(0, 0);
     gameboard1.receiveAttack(1, 0);
     console.log(ship5.isSunk());
+    console.log(gameboard1.allShipsSunk());
     console.log(gameboard1.board);
     expect(gameboard1.allShipsSunk()).toBe(true);
   });

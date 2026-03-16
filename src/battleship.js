@@ -91,9 +91,7 @@ function Gameboard() {
   }
 
   function allShipsSunk() {
-    let arr = ships.every((ship) => {ship.isSunk() === true});
-    console.log(`arr: ${arr}`)
-    return arr
+    return ships.every(ship => ship.isSunk() === true);
   }
 
   return {

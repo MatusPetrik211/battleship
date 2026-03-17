@@ -1,12 +1,12 @@
 export { Ship, Gameboard }
 
-function Ship(length) {
+const Ship = (length) => {
   let hitCount = 0;
   let startCoords = [0, 0];
   let rotation = "H";
 
   function hit() {
-    if (!this.isSunk()) {
+    if (!isSunk()) {
       hitCount++;
     }
     // console.log(hitCount);
@@ -25,7 +25,7 @@ function Ship(length) {
   }
 }
 
-function Gameboard() {
+const Gameboard = () => {
   const ships = [];
   // creates a 2d array with the length of 10 x 10
   const board = Array.from({ length: 10 }, () => Array(10).fill(0));
@@ -100,4 +100,8 @@ function Gameboard() {
     receiveAttack,
     allShipsSunk,
   }
+}
+
+const Player = () => {
+  
 }

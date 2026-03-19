@@ -1,4 +1,4 @@
-export { Ship, Gameboard }
+export { Ship, Gameboard, Player, humanPlayer, computerPlayer }
 
 const Ship = (length) => {
   let hitCount = 0;
@@ -103,5 +103,20 @@ const Gameboard = () => {
 }
 
 const Player = () => {
-  
+  const gameboard = Gameboard();
+  return {
+    gameboard,
+  }
+}
+
+const humanPlayer = () => {
+  return {
+    ...Player(),
+  }
+}
+
+const computerPlayer = () => { 
+  return {
+    ...Player(),
+  } 
 }

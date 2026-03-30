@@ -9,7 +9,6 @@ const Ship = (length) => {
     if (!isSunk()) {
       hitCount++;
     }
-    // console.log(hitCount);
   }
 
   function isSunk() {
@@ -82,7 +81,6 @@ const Gameboard = () => {
         let shipPlacements = getShipPlacement(ship);
         for (const placement of shipPlacements) {
           if (placement[0] === x && placement[1] === y) {
-            // console.log("Ship was hit!!");
             ship.hit();
           }
         }

@@ -1,4 +1,5 @@
 :root {
+  --edge-color: rgb(87, 87, 87);
 }
 
 *,
@@ -43,16 +44,36 @@ body {
 
 .sub-play-section {
   display: flex;
+  flex-direction: column;
 
   background-color: rgb(255, 255, 255);
 }
 
 .gameboard {
-  width: 500px;
-  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 400px;
 
-  background-color: rgb(247, 247, 247);
-  border: 2px solid black
+  background-color: rgb(255, 255, 255);
+  border: 1px solid var(--edge-color);
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;;
+    flex: 1;
+}
+
+.block {
+  display: flex;
+  flex: 1;
+  border: 1px solid var(--edge-color);
+}
+
+.block:hover {
+  background-color: rgb(216, 216, 216);
 }
 
 .vertical-line {

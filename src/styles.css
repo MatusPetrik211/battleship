@@ -1,5 +1,7 @@
 :root {
-  --edge-color: rgb(87, 87, 87);
+  --edge-color: rgb(226, 226, 226);
+  --grey: hsl(0, 0%, 90%);
+  --green: hsl(108, 70%, 60%);
 }
 
 *,
@@ -24,7 +26,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: hsl(0, 0%, 85%);
+  background-color: var(--grey);
   box-shadow: 0px 0px 6px
 }
 
@@ -35,7 +37,6 @@ body {
 .play-section {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
 
   width: 100%;
 
@@ -45,6 +46,7 @@ body {
 .sub-play-section {
   display: flex;
   flex-direction: column;
+  margin-top: 54px;
 
   background-color: rgb(255, 255, 255);
 }
@@ -60,10 +62,10 @@ body {
 }
 
 .column {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;;
-    flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;;
+  flex: 1;
 }
 
 .block {
@@ -72,8 +74,37 @@ body {
   border: 1px solid var(--edge-color);
 }
 
-.block:hover {
-  background-color: rgb(216, 216, 216);
+.computer-block:hover {
+  background-color: rgb(245, 187, 187);
+  border: 1px solid rgb(212, 98, 96);
+}
+
+.random-btn {
+  padding: 16px;
+  font-size: 24px;
+  margin-top: 6px;
+  
+  background-color: var(--grey);
+  font-weight: bold;
+  border: none;
+}
+
+.random-btn:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
+.start-btn {
+  padding: 16px;
+  font-size: 24px;
+  margin-top: 6px;
+  
+  background-color: var(--green);
+  font-weight: bold;
+  border: none;
+}
+
+.start-btn:hover {
+  background-color: hsl(108, 70%, 50%);
 }
 
 .vertical-line {
@@ -81,5 +112,9 @@ body {
   height: 80%;
   
   background-color: rgb(210, 210, 210);
+}
+
+.sub-play-section, .vertical-line {
+  margin-top: 54px;
 }
 

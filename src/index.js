@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Ship, Gameboard, humanPlayer, computerPlayer } from "./battleship.js"
+import { Ship, Gameboard, HumanPlayer, ComputerPlayer } from "./battleship.js"
 
 const gameboards = document.querySelectorAll(".gameboard");
 
@@ -28,6 +28,8 @@ function fillGameboard(gameboardDiv) {
     }
 }
 
+console.log("HI");
+
 for (const gameboardDiv of gameboards) {
     fillGameboard(gameboardDiv);
 }
@@ -40,11 +42,22 @@ function getRandomRotation() {
     return Math.floor(Math.random()) > 0.5 ? "V" : "H";
 }
 
-function displayShips(gameboard) {
-
+function displayShips(gameboard, gameboardDiv) {
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+            console.log(gameboard[i]);
+            console.log(gameboard[i][j]);
+            if (gameboard[i][j] === 1) {
+                gameboardDiv.children[i].children[j].style.backgroundColor = "black";
+            }
+        }
+    }
 }
 
-function startGame(humanPlayer, computerPlayer) {
+function startGame() {
+    const humanPlayer = HumanPlayer();
+    const computerPlayer = ComputerPlayer();
+
     const shipLengths = [1, 1, 2, 3, 4, 5];
     for (const length in shipLengths) {
         let playerX = getRandomPos();
@@ -58,4 +71,10 @@ function startGame(humanPlayer, computerPlayer) {
         humanPlayer.gameboard.placeShip(Ship(length), playerX, playerY, playerRotation);
         computerPlayer.gameboard.placeShip(Ship(length), computerX, computerY, computerRotation);
     }
+
+    displayShips(humanPlayer.gameboard.board, gameboards[0]);
 }
+
+startGame();
+window.alert(gameboards[0]);
+window.alert("hello");

@@ -1,4 +1,4 @@
-import { Ship, Gameboard, humanPlayer, computerPlayer } from "./battleship.js"
+import { Ship, Gameboard, HumanPlayer, ComputerPlayer } from "./battleship.js"
 
 describe("test Ship factory function", () => {
   let ship1 = Ship(4);
@@ -373,7 +373,7 @@ describe("test Gameboard allShipsSunked method", () => {
 });
 
 describe("test humanPlayer factory function", () => {
-  const player = humanPlayer();
+  const player = HumanPlayer();
 
   test("humanPlayer should have defined board", () => {
     expect(player.gameboard).toBeDefined();
@@ -381,7 +381,7 @@ describe("test humanPlayer factory function", () => {
 });
 
 describe("test computerPlayer factory function", () => {
-  const player = computerPlayer();
+  const player = ComputerPlayer();
 
   test("computerPlayer should have defined board", () => {
     expect(player.gameboard).toBeDefined();

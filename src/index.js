@@ -39,7 +39,7 @@ function getRandomPos() {
 }
 
 function getRandomRotation() {
-    return Math.floor(Math.random()) > 0.5 ? "V" : "H";
+    return Math.random() > 0.5 ? "V" : "H";
 }
 
 function displayShips(gameboard, gameboardDiv) {
@@ -76,5 +76,5 @@ function startGame() {
 }
 
 startGame();
-window.alert(gameboards[0]);
-window.alert("hello");
+// window.alert(gameboards[0]);
+// window.alert("hello");

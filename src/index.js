@@ -28,14 +28,11 @@ function fillGameboard(gameboardDiv) {
     }
 }
 
-console.log("HI");
-
 for (const gameboardDiv of gameboards) {
     fillGameboard(gameboardDiv);
 }
 
 function getRandomPos() {
-    alert(Math.floor(Math.random() * 10));
     return Math.floor(Math.random() * 10);
 }
 
@@ -46,10 +43,8 @@ function getRandomRotation() {
 function displayShips(gameboard, gameboardDiv) {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-            // console.log(gameboard[i]);
-            // console.log(gameboard[i][j]);
             if (gameboard[i][j] === 1) {
-                gameboardDiv.children[i].children[j].style.backgroundColor = "black";
+                gameboardDiv.children[j].children[i].style.backgroundColor = "black";
             }
         }
     }
@@ -59,23 +54,24 @@ function startGame() {
     const humanPlayer = HumanPlayer();
     const computerPlayer = ComputerPlayer();
 
-    // const shipLengths = [1, 1, 2, 3, 4, 5];
-    // for (const length in shipLengths) {
-    //     let playerX = getRandomPos();
-    //     let playerY = getRandomPos();
-    //     let playerRotation =  getRandomRotation();
+    const shipLengths = [1, 1, 2, 3, 4, 5];
+    // to do
+    // make arrays of ships from the shipLengths array and iterate throguh it instead of shipLengths
+    for (const length of shipLengths) {
+        let playerX = getRandomPos();
+        let playerY = getRandomPos();
+        let playerRotation =  getRandomRotation();
 
-    //     // let computerX = getRandomPos();
-    //     // let computerY = getRandomPos();
-    //     // let computerRotation =  getRandomRotation();
+        // let computerX = getRandomPos();
+        // let computerY = getRandomPos();
+        // let computerRotation =  getRandomRotation();
 
-    //     humanPlayer.gameboard.placeShip(Ship(length), playerX, playerY, playerRotation);
-    //     // computerPlayer.gameboard.placeShip(Ship(length), computerX, computerY, computerRotation);
-    // }
+        humanPlayer.gameboard.placeShip(Ship(length), playerX, playerY, playerRotation);
+        // console.log(playerX, playerY, playerRotation);
+        // computerPlayer.gameboard.placeShip(Ship(length), computerX, computerY, computerRotation);
+    }
 
-    humanPlayer.gameboard.placeShip(Ship(3), 8, 3, "V");
-
-    console.log(humanPlayer.gameboard.board);
+    // console.log(humanPlayer.gameboard.board);
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
 }
 

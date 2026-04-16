@@ -55,9 +55,8 @@ function startGame() {
     const computerPlayer = ComputerPlayer();
 
     const shipLengths = [1, 1, 2, 3, 4, 5];
-    // to do
-    // make arrays of ships from the shipLengths array and iterate throguh it instead of shipLengths
-    for (const length of shipLengths) {
+    const ships = shipLengths.map((length) => Ship(length));
+    for (const ship of ships) {
         let playerX = getRandomPos();
         let playerY = getRandomPos();
         let playerRotation =  getRandomRotation();
@@ -66,7 +65,7 @@ function startGame() {
         // let computerY = getRandomPos();
         // let computerRotation =  getRandomRotation();
 
-        humanPlayer.gameboard.placeShip(Ship(length), playerX, playerY, playerRotation);
+        humanPlayer.gameboard.placeShip(ship, playerX, playerY, playerRotation);
         // console.log(playerX, playerY, playerRotation);
         // computerPlayer.gameboard.placeShip(Ship(length), computerX, computerY, computerRotation);
     }

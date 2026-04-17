@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Ship, Gameboard, HumanPlayer, ComputerPlayer } from "./battleship.js"
+import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js"
 
 const gameboards = document.querySelectorAll(".gameboard");
 

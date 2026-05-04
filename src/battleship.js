@@ -35,26 +35,122 @@ const Gameboard = () => {
   }
 
   function placeShip(ship, x, y, rotation = "H") {
+    // If no specific position is provided, use random
+    let attempts = 0;
+    const maxAttempts = 1000;
+    let currentX = x;
+    let currentY = y;
+    let currentRotation = rotation;
+    let foundValidPlacement = false;
+    
+    const useRandom = (x === undefined || y === undefined);
+    
+    while (!foundValidPlacement && attempts < maxAttempts) {
+        if (useRandom || attempts > 0) {
+            currentX = Math.floor(Math.random() * board[0].length);
+            currentY = Math.floor(Math.random() * board.length);
+            currentRotation = Math.random() < 0.5 ? "H" : "V";
+        }
+        
+        // Apply clampPosition BEFORE validation
+        let checkX = currentX;
+        let checkY = currentY;
+        
+        if (currentRotation === "H") {
+            checkX = clampPosition(currentX, ship.length);
+        } else {
+            checkY = clampPosition(currentY, ship.length);
+        }
+        
+        if (isValidPlacement(ship, checkX, checkY, currentRotation)) {
+            foundValidPlacement = true;
+            currentX = checkX;
+            currentY = checkY;
+            break;
+        }
+        attempts++;
+    }
+    
+    if (!foundValidPlacement) {
+        console.log("Could not find valid placement after " + maxAttempts + " attempts");
+        return false;
+    }
+
     ships.push(ship);
-    // if ship is rotated by default (horizontally)
-    if (rotation === "H") {
-      x = clampPosition(x, ship.length);
+    
+    if (currentRotation === "H") {
       ship.rotation = "H";
-
       for (let i = 0; i < ship.length; i++) {
-        board[y][x + i] = 1;
+        board[currentY][currentX + i] = 1;
       }
-    } else if (rotation === "V") { // if ship is rotated vertically
-      y = clampPosition(y, ship.length);
+    } else if (currentRotation === "V") {
       ship.rotation = "V";
-
       for (let i = 0; i < ship.length; i++) {
-        board[y + i][x] = 1;
+        board[currentY + i][currentX] = 1;
       }
     }
 
-    ship.startCoords = [x, y];
+    ship.startCoords = [currentX, currentY];
+    return true;
   }
+
+  function isValidPlacement(ship, x, y, rotation) {
+    // First check if ship fits within board boundaries
+    if (rotation === "H") {
+        if (x + ship.length > board[0].length) return false;
+        
+        // Check ship cells + surrounding cells for spacing
+        for (let i = -1; i <= ship.length; i++) {
+            for (let dy = -1; dy <= 1; dy++) {
+                const checkX = x + i;
+                const checkY = y + dy;
+                
+                // Skip out of bounds
+                if (checkX < 0 || checkX >= board[0].length || 
+                    checkY < 0 || checkY >= board.length) continue;
+                
+                // Within ship cells
+                if (i >= 0 && i < ship.length && dy === 0) {
+                    if (board[checkY][checkX] === 1) return false; // Overlap
+                } 
+                // Adjacent cells (including diagonals)
+                else {
+                    if (board[checkY][checkX] === 1) return false; // Too close
+                }
+            }
+        }
+    } 
+    else if (rotation === "V") {
+        if (y + ship.length > board.length) return false;
+        
+        // Check ship cells + surrounding cells for spacing
+        for (let i = -1; i <= ship.length; i++) {
+            for (let dx = -1; dx <= 1; dx++) {
+                const checkX = x + dx;
+                const checkY = y + i;
+                
+                // Skip out of bounds
+                if (checkX < 0 || checkX >= board[0].length || 
+                    checkY < 0 || checkY >= board.length) { continue };
+                
+                // Within ship cells
+                if (i >= 0 && i < ship.length && dx === 0) {
+                    if (board[checkY][checkX] === 1) {
+                      return false;
+                    } // Overlap
+                }
+                // Adjacent cells (including diagonals)
+                else {
+                    if (board[checkY][checkX] === 1) {
+                      return false
+                    }; // Too close
+                }
+            }
+        }
+    }
+    
+    return true; // Placement is valid
+}
 
   function getShipPlacement(ship) {
     const placementCoords = [];

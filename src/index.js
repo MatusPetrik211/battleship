@@ -4,13 +4,14 @@ import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js"
 const gameboards = document.querySelectorAll(".gameboard");
 const randomBtn = document.querySelector(".random-btn");
 
-randomBtn.addEventListener("click", getRandomPlacement);
+// randomBtn.addEventListener("click", getRandomPlacement);
 
 function fillGameboard(gameboardDiv) {
      function createColumn() {
         const column = document.createElement('div');
         column.classList.toggle('column');
         gameboardDiv.appendChild(column);
+        
         function createBlock() {
             const block = document.createElement('div');
             if (gameboardDiv.classList.contains("computer-gameboard")) {
@@ -21,6 +22,7 @@ function fillGameboard(gameboardDiv) {
             block.classList.toggle("block");
             column.appendChild(block);
         }
+
         for(let i = 0; i < 10; i++) {
             createBlock();
         }
@@ -61,10 +63,8 @@ function clearGameboard(gameboardDiv) {
     }
 }
 
-function getRandomPlacement() {
+function getRandomPlacement(player) {
     clearGameboard(gameboards[0]);
-
-    const humanPlayer = HumanPlayer();
 
     const shipLengths = [1, 1, 2, 3, 4, 5];
     const ships = shipLengths.map((length) => Ship(length));
@@ -72,41 +72,22 @@ function getRandomPlacement() {
         let playerX = getRandomPos();
         let playerY = getRandomPos();
         let playerRotation =  getRandomRotation();
-
-        humanPlayer.gameboard.placeShip(ship, playerX, playerY, playerRotation);
+        
+        player.gameboard.placeShip(ship, playerX, playerY, playerRotation);
     }
-
-    console.log(humanPlayer.gameboard.board)
-
-    displayShips(humanPlayer.gameboard.board, gameboards[0]);
 }
 
-// function startGame() {
-//     const humanPlayer = HumanPlayer();
-//     const computerPlayer = ComputerPlayer();
+function startGame() {
+    const humanPlayer = HumanPlayer();
+    const computerPlayer = ComputerPlayer();
 
-//     const shipLengths = [1, 1, 2, 3, 4, 5];
-//     const ships = shipLengths.map((length) => Ship(length));
-//     for (const ship of ships) {
-//         let playerX = getRandomPos();
-//         let playerY = getRandomPos();
-//         let playerRotation =  getRandomRotation();
+    getRandomPlacement(humanPlayer);
+    getRandomPlacement(computerPlayer);
 
-//         let computerX = getRandomPos();
-//         let computerY = getRandomPos();
-//         let computerRotation =  getRandomRotation();
+    displayShips(humanPlayer.gameboard.board, gameboards[0]);
+    displayShips(computerPlayer.gameboard.board, gameboards[1]);
+}
 
-//         humanPlayer.gameboard.placeShip(ship, playerX, playerY, playerRotation);
-//         console.log(playerX, playerY, playerRotation);
-//         computerPlayer.gameboard.placeShip(ship, computerX, computerY, computerRotation);
-//     }
-
-//     // console.log(humanPlayer.gameboard.board);
-//     displayShips(humanPlayer.gameboard.board, gameboards[0]);
-//     displayShips(computerPlayer.gameboard.board, gameboards[1]);
-// }
-
-// startGame();
+startGame();
 // window.alert(gameboards[0]);
 // window.alert("hello");
-getRandomPlacement();

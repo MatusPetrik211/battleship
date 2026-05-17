@@ -1,35 +1,40 @@
 import "./styles.css";
-import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js"
+import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js";
+
+const BOARD_SIZE = 10;
+const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
 
 const gameboards = document.querySelectorAll(".gameboard");
 const randomBtn = document.querySelector(".random-btn");
 
-// randomBtn.addEventListener("click", getRandomPlacement);
+const humanPlayer = HumanPlayer();
+const computerPlayer = ComputerPlayer();
+
+randomBtn.addEventListener("click", () => { 
+    getRandomPlacement(humanPlayer);
+    displayShips(humanPlayer.gameboard.board, gameboards[0]);
+});
 
 function fillGameboard(gameboardDiv) {
-     function createColumn() {
+    const isComputerBoard = gameboardDiv.classList.contains("computer-gameboard");
+
+     for (let i = 0; i < BOARD_SIZE; i++) {
         const column = document.createElement('div');
-        column.classList.toggle('column');
+        column.classList.add('column');
         gameboardDiv.appendChild(column);
-        
-        function createBlock() {
+
+        for (let j = 0; j < BOARD_SIZE; j++) {
             const block = document.createElement('div');
-            if (gameboardDiv.classList.contains("computer-gameboard")) {
-                block.classList.toggle("computer-block");
+            block.classList.add("block");
+
+            if (isComputerBoard) {
+                block.classList.add("computer-block");
             } else {
-                block.classList.toggle("player-block");
+                block.classList.add("player-block");
             }
-            block.classList.toggle("block");
+
             column.appendChild(block);
         }
-
-        for(let i = 0; i < 10; i++) {
-            createBlock();
-        }
-    }
-
-    for(let i = 0; i < 10; i++) {
-        createColumn();
     }
 }
 
@@ -78,9 +83,6 @@ function getRandomPlacement(player) {
 }
 
 function startGame() {
-    const humanPlayer = HumanPlayer();
-    const computerPlayer = ComputerPlayer();
-
     getRandomPlacement(humanPlayer);
     getRandomPlacement(computerPlayer);
 

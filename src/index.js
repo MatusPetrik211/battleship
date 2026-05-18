@@ -15,35 +15,35 @@ randomBtn.addEventListener("click", () => {
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
 });
 
-function fillGameboard(gameboardDiv) {
-    const isComputerBoard = gameboardDiv.classList.contains("computer-gameboard");
+function fillGameboards(gameboardDivs) {
+    for (const gameboardDiv of gameboardDivs) {
+        const isComputerBoard = gameboardDiv.classList.contains("computer-gameboard");
 
-     for (let i = 0; i < BOARD_SIZE; i++) {
-        const column = document.createElement('div');
-        column.classList.add('column');
-        gameboardDiv.appendChild(column);
+        for (let i = 0; i < BOARD_SIZE; i++) {
+            const column = document.createElement('div');
+            column.classList.add('column');
+            gameboardDiv.appendChild(column);
 
-        for (let j = 0; j < BOARD_SIZE; j++) {
-            const block = document.createElement('div');
-            block.classList.add("block");
+            for (let j = 0; j < BOARD_SIZE; j++) {
+                const block = document.createElement('div');
+                block.classList.add("block");
 
-            if (isComputerBoard) {
-                block.classList.add("computer-block");
-            } else {
-                block.classList.add("player-block");
+                if (isComputerBoard) {
+                    block.classList.add("computer-block");
+                } else {
+                    block.classList.add("player-block");
+                }
+
+                column.appendChild(block);
             }
-
-            column.appendChild(block);
         }
     }
 }
 
-for (const gameboardDiv of gameboards) {
-    fillGameboard(gameboardDiv);
-}
+fillGameboards(gameboards);
 
 function getRandomPos() {
-    return Math.floor(Math.random() * 10);
+    return Math.floor(Math.random() * BOARD_SIZE);
 }
 
 function getRandomRotation() {
@@ -51,8 +51,8 @@ function getRandomRotation() {
 }
 
 function displayShips(gameboard, gameboardDiv) {
-    for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let j = 0; j < BOARD_SIZE; j++) {
             if (gameboard[i][j] === 1) {
                 gameboardDiv.children[j].children[i].style.backgroundColor = "black";
             }
@@ -61,8 +61,8 @@ function displayShips(gameboard, gameboardDiv) {
 }
 
 function clearGameboard(gameboardDiv) {
-       for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+    for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let j = 0; j < BOARD_SIZE; j++) {
             gameboardDiv.children[j].children[i].style.backgroundColor = "white";
         }
     }
@@ -71,8 +71,7 @@ function clearGameboard(gameboardDiv) {
 function getRandomPlacement(player) {
     clearGameboard(gameboards[0]);
 
-    const shipLengths = [1, 1, 2, 3, 4, 5];
-    const ships = shipLengths.map((length) => Ship(length));
+    const ships = SHIP_LENGTHS.map((length) => Ship(length));
     for (const ship of ships) {
         let playerX = getRandomPos();
         let playerY = getRandomPos();
@@ -91,5 +90,5 @@ function startGame() {
 }
 
 startGame();
-// window.alert(gameboards[0]);
-// window.alert("hello");
+clearGameboard(gameboards[0]);
+

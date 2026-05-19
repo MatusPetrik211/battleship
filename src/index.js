@@ -60,7 +60,11 @@ function displayShips(gameboard, gameboardDiv) {
     }
 }
 
-function clearGameboard(gameboardDiv) {
+function clearGameboard(gameboard, gameboardDiv) {
+    for (const arr of gameboard.board) {
+        arr.fill(0);
+    }
+
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
             gameboardDiv.children[j].children[i].style.backgroundColor = "white";
@@ -69,7 +73,7 @@ function clearGameboard(gameboardDiv) {
 }
 
 function getRandomPlacement(player) {
-    clearGameboard(gameboards[0]);
+    clearGameboard(player.gameboard ,gameboards[0]);
 
     const ships = SHIP_LENGTHS.map((length) => Ship(length));
     for (const ship of ships) {
@@ -90,5 +94,4 @@ function startGame() {
 }
 
 startGame();
-clearGameboard(gameboards[0]);
 

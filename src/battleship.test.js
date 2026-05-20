@@ -236,8 +236,6 @@ describe("test Gameboard receiveAttack method", () => {
   gameboard1.placeShip(ship1, 0, 0);
   gameboard1.placeShip(ship2, 9, 9);
   gameboard1.placeShip(ship3, 5, 8);
-  // console.log(ship1.startCoords);
-  // console.log(ship2.startCoords);
 
   test("test for horizontally placed ships", () => {
     expect(ship1.isSunk()).toBe(false);
@@ -275,7 +273,6 @@ describe("test Gameboard receiveAttack method", () => {
   gameboard2.placeShip(ship5, 9, 9, "V");
   gameboard2.placeShip(ship6, 3, 4, "V");
 
-  console.log(ship4.startCoords);
 
   test("test for vertically placed ships", () => {
     expect(ship4.isSunk()).toBe(false);
@@ -318,7 +315,6 @@ describe("test Gameboard receiveAttack method", () => {
     gameboard3.receiveAttack(8, 8);
     gameboard3.receiveAttack(7, 7);
 
-    // console.log(gameboard3.board);
 
     expect(gameboard3.board).toEqual([
       ["X", 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -365,9 +361,6 @@ describe("test Gameboard allShipsSunked method", () => {
     expect(gameboard1.allShipsSunk()).toBe(false);
     gameboard1.receiveAttack(0, 0);
     gameboard1.receiveAttack(1, 0);
-    // console.log(ship5.isSunk());
-    // console.log(gameboard1.allShipsSunk());
-    // console.log(gameboard1.board);
     expect(gameboard1.allShipsSunk()).toBe(true);
   });
 });

@@ -93,7 +93,7 @@ body {
   background-color: hsl(0, 0%, 80%);
 }
 
-.start-btn {
+/* .start-btn {
   padding: 16px;
   font-size: 24px;
   margin-top: 6px;
@@ -105,7 +105,7 @@ body {
 
 .start-btn:hover {
   background-color: hsl(108, 70%, 50%);
-}
+} */
 
 .vertical-line {
   width: 1px;

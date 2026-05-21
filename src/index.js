@@ -85,13 +85,4 @@ function getRandomPlacement(player) {
     }
 }
 
-function startGame() {
-    getRandomPlacement(humanPlayer);
-    getRandomPlacement(computerPlayer);
-
-    displayShips(humanPlayer.gameboard.board, gameboards[0]);
-    displayShips(computerPlayer.gameboard.board, gameboards[1]);
-}
-
-startGame();
 

@@ -1,19 +1,9 @@
 import "./styles.css";
 import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js";
+import closeBtn from "./close.png";
 
 const BOARD_SIZE = 10;
 const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
-
-const gameboards = document.querySelectorAll(".gameboard");
-const randomBtn = document.querySelector(".random-btn");
-
-const humanPlayer = HumanPlayer();
-const computerPlayer = ComputerPlayer();
-
-randomBtn.addEventListener("click", () => { 
-    getRandomPlacement(humanPlayer);
-    displayShips(humanPlayer.gameboard.board, gameboards[0]);
-});
 
 function fillGameboards(gameboardDivs) {
     for (const gameboardDiv of gameboardDivs) {
@@ -40,7 +30,27 @@ function fillGameboards(gameboardDivs) {
     }
 }
 
+const gameboards = document.querySelectorAll(".gameboard");
 fillGameboards(gameboards);
+
+const randomBtn = document.querySelector(".random-btn");
+const computerBlocks = document.querySelectorAll(".computer-block");
+
+const humanPlayer = HumanPlayer();
+const computerPlayer = ComputerPlayer();
+
+randomBtn.addEventListener("click", () => { 
+    getRandomPlacement(humanPlayer);
+    displayShips(humanPlayer.gameboard.board, gameboards[0]);
+});
+
+computerBlocks.forEach(block => {
+    block.addEventListener("click", () => {
+        block.style.backgroundImage = `url(${closeBtn})`;
+        block.style.backgroundColor = "red";
+        block.style.backgroundSize = "100%"
+    });
+});
 
 function getRandomPos() {
     return Math.floor(Math.random() * BOARD_SIZE);
@@ -49,6 +59,8 @@ function getRandomPos() {
 function getRandomRotation() {
     return Math.random() > 0.5 ? "V" : "H";
 }
+
+
 
 function displayShips(gameboard, gameboardDiv) {
     for (let i = 0; i < BOARD_SIZE; i++) {

@@ -74,6 +74,11 @@ body {
   border: 1px solid var(--edge-color);
 }
 
+.computer-block {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
 .computer-block:hover {
   background-color: rgb(245, 187, 187);
   border: 1px solid rgb(212, 98, 96);

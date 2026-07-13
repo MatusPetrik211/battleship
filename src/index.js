@@ -1,6 +1,6 @@
 import "./styles.css";
 import { Ship, HumanPlayer, ComputerPlayer } from "./battleship.js";
-import closeBtn from "./close.png";
+import closeBtn from "./icons/close.png";
 
 const BOARD_SIZE = 10;
 const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
@@ -47,7 +47,6 @@ randomBtn.addEventListener("click", () => {
 computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
         block.style.backgroundImage = `url(${closeBtn})`;
-        block.style.backgroundColor = "red";
         block.style.backgroundSize = "100%"
     });
 });

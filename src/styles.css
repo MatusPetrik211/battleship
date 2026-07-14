@@ -1,6 +1,6 @@
 :root {
   --edge-color: rgb(226, 226, 226);
-  --grey: hsl(0, 0%, 90%);
+  --grey: hsl(0, 0%, 80%);
   --green: hsl(108, 70%, 60%);
 }
 
@@ -72,11 +72,6 @@ body {
   display: flex;
   flex: 1;
   border: 1px solid var(--edge-color);
-}
-
-.computer-block {
-  font-weight: bold;
-  font-size: 2rem;
 }
 
 .computer-block:hover {

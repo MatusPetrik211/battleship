@@ -93,26 +93,9 @@ body {
   background-color: hsl(0, 0%, 80%);
 }
 
-/* .start-btn {
-  padding: 16px;
-  font-size: 24px;
-  margin-top: 6px;
-  
-  background-color: var(--green);
-  font-weight: bold;
-  border: none;
-}
-
-.start-btn:hover {
-  background-color: hsl(108, 70%, 50%);
-} */
-
 .vertical-line {
   width: 1px;
   height: 85%;
   
   background-color: rgb(210, 210, 210);
 }
-
-
-

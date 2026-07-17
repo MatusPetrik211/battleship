@@ -47,6 +47,7 @@ randomBtn.addEventListener("click", () => {
 computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
         block.style.backgroundImage = `url(${closeBtn})`;
+        block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         block.style.backgroundSize = "100%"
     });
 });

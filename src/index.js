@@ -41,6 +41,7 @@ const computerPlayer = ComputerPlayer();
 
 randomBtn.addEventListener("click", () => { 
     getRandomPlacement(humanPlayer);
+    getRandomPlacement(computerPlayer);
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
 });
 
@@ -48,7 +49,24 @@ computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
         block.style.backgroundImage = `url(${closeBtn})`;
         block.style.backgroundColor = `hsl(0, 0%, 80%)`;
-        block.style.backgroundSize = "100%"
+        block.style.backgroundSize = "100%";
+
+        const parentColumn = block.parentElement;
+        const gameboard = parentColumn.parentElement;
+
+        const columnIndex = Array.from(gameboard.children).indexOf(parentColumn);
+        
+        const rowIndex = Array.from(parentColumn.children).indexOf(block);
+        
+        const linearIndex = rowIndex * BOARD_SIZE + columnIndex;
+        
+        console.log(`Row: ${rowIndex}, Column: ${columnIndex}, Index: ${linearIndex}`);
+
+        if (computerPlayer.gameboard.board[rowIndex][columnIndex] === 1) {
+            block.style.backgroundColor = `hsl(0, 99%, 49%)`;
+        }
+
+        console.log(computerPlayer.gameboard.board)
     });
 });
 

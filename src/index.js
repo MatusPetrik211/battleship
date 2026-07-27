@@ -48,7 +48,6 @@ randomBtn.addEventListener("click", () => {
 computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
         block.style.backgroundImage = `url(${closeBtn})`;
-        block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         block.style.backgroundSize = "100%";
 
         const parentColumn = block.parentElement;
@@ -64,6 +63,8 @@ computerBlocks.forEach(block => {
 
         if (computerPlayer.gameboard.board[rowIndex][columnIndex] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
+        } else {
+            block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
         console.log(computerPlayer.gameboard.board)

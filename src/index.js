@@ -71,8 +71,8 @@ computerBlocks.forEach(block => {
     });
 });
 
-function getRandomPos() {
-    return Math.floor(Math.random() * BOARD_SIZE);
+function getRandomPos(boardSize = BOARD_SIZE) {
+    return Math.floor(Math.random() * boardSize);
 }
 
 function getRandomRotation() {

@@ -4,6 +4,7 @@ import closeBtn from "./icons/close.png";
 
 const BOARD_SIZE = 10;
 const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
+let PLAYER_BOARD_SET = false;
 
 function fillGameboards(gameboardDivs) {
     for (const gameboardDiv of gameboardDivs) {
@@ -43,10 +44,17 @@ randomBtn.addEventListener("click", () => {
     getRandomPlacement(humanPlayer);
     getRandomPlacement(computerPlayer);
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
+
+    PLAYER_BOARD_SET = true;
 });
 
 computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
+        if (!PLAYER_BOARD_SET) {
+            alert("Before launching an attack you need to set your board first");
+            return;
+        }
+
         block.style.backgroundImage = `url(${closeBtn})`;
         block.style.backgroundSize = "100%";
 

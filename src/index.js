@@ -68,13 +68,14 @@ computerBlocks.forEach(block => {
         const linearIndex = rowIndex * BOARD_SIZE + columnIndex;
         
         console.log(`Row: ${rowIndex}, Column: ${columnIndex}, Index: ${linearIndex}`);
-        computerPlayer.gameboard.receiveAttack(rowIndex, columnIndex);
 
         if (computerPlayer.gameboard.board[rowIndex][columnIndex] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
+
+        computerPlayer.gameboard.receiveAttack(columnIndex, rowIndex);
 
         console.log(computerPlayer.gameboard.board)
     });

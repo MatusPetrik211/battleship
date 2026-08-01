@@ -36,6 +36,7 @@ fillGameboards(gameboards);
 
 const randomBtn = document.querySelector(".random-btn");
 const computerBlocks = document.querySelectorAll(".computer-block");
+const playerBlocks = document.querySelectorAll(".player-block");
 
 const humanPlayer = HumanPlayer();
 const computerPlayer = ComputerPlayer();
@@ -61,23 +62,28 @@ computerBlocks.forEach(block => {
         const parentColumn = block.parentElement;
         const gameboard = parentColumn.parentElement;
 
-        const columnIndex = Array.from(gameboard.children).indexOf(parentColumn);
-        
-        const rowIndex = Array.from(parentColumn.children).indexOf(block);
-        
-        const linearIndex = rowIndex * BOARD_SIZE + columnIndex;
-        
-        console.log(`Row: ${rowIndex}, Column: ${columnIndex}, Index: ${linearIndex}`);
+        const columnComputer = Array.from(gameboard.children).indexOf(parentColumn);
+        const rowComputer = Array.from(parentColumn.children).indexOf(block);
 
-        if (computerPlayer.gameboard.board[rowIndex][columnIndex] === 1) {
+        const columnHuman = getRandomPos();
+        const rowHuman = getRandomPos();
+        
+        console.log(`Row: ${rowComputer}, Column: ${columnComputer}`);
+        console.log(`Row: ${rowHuman}, Column: ${columnHuman}`);
+
+        if (computerPlayer.gameboard.board[rowComputer][columnComputer] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
-        computerPlayer.gameboard.receiveAttack(columnIndex, rowIndex);
+        playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
 
-        console.log(computerPlayer.gameboard.board)
+        humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
+        computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);
+
+        console.log(computerPlayer.gameboard.board);
+        console.log(humanPlayer.gameboard.board);
     });
 });
 

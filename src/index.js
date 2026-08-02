@@ -78,6 +78,8 @@ computerBlocks.forEach(block => {
         }
 
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
+        playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
+        playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;
 
         humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);

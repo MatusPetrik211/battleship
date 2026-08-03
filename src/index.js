@@ -77,7 +77,12 @@ computerBlocks.forEach(block => {
             block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
-        playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
+        if (humanPlayer.gameboard.board[rowHuman][columnHuman] === 1) {
+            playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
+        } else {
+            playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 0%, 80%)`;
+        }
+
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;
 

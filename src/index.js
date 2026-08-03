@@ -37,6 +37,7 @@ fillGameboards(gameboards);
 const randomBtn = document.querySelector(".random-btn");
 const computerBlocks = document.querySelectorAll(".computer-block");
 const playerBlocks = document.querySelectorAll(".player-block");
+const instructions = document.querySelector(".instructions");
 
 const humanPlayer = HumanPlayer();
 const computerPlayer = ComputerPlayer();
@@ -55,6 +56,8 @@ computerBlocks.forEach(block => {
             alert("Before launching an attack you need to set your board first");
             return;
         }
+
+        instructions.style.visibility = "hidden";
 
         block.style.backgroundImage = `url(${closeBtn})`;
         block.style.backgroundSize = "100%";

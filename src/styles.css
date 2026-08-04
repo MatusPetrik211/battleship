@@ -99,3 +99,7 @@ body {
   
   background-color: rgb(210, 210, 210);
 }
+
+.instructions {
+  font-size: 14px;
+}

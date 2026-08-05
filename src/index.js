@@ -70,10 +70,13 @@ computerBlocks.forEach(block => {
 
         const columnHuman = getRandomPos();
         const rowHuman = getRandomPos();
-        
-        console.log(`Row: ${rowComputer}, Column: ${columnComputer}`);
-        console.log(`Row: ${rowHuman}, Column: ${columnHuman}`);
 
+         if ((computerPlayer.gameboard.board[rowComputer][columnComputer] === 'X') || 
+            (humanPlayer.gameboard.board[rowHuman][columnHuman] === 'X')) {
+            alert("You already attacked this spot!");
+            return;
+        }
+            
         if (computerPlayer.gameboard.board[rowComputer][columnComputer] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
@@ -86,14 +89,12 @@ computerBlocks.forEach(block => {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
+
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;
 
         humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);
-
-        console.log(computerPlayer.gameboard.board);
-        console.log(humanPlayer.gameboard.board);
     });
 });
 

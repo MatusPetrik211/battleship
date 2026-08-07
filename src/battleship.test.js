@@ -252,7 +252,7 @@ describe("test Gameboard receiveAttack method", () => {
     gameboard1.receiveAttack(8, 9);
     expect(ship2.isSunk()).toBe(true);
 
-
+    console.log(gameboard1)
     gameboard1.receiveAttack(5, 8);
     expect(ship3.isSunk()).toBe(false);
     gameboard1.receiveAttack(6, 8);
@@ -261,6 +261,8 @@ describe("test Gameboard receiveAttack method", () => {
     expect(ship3.isSunk()).toBe(false);
     gameboard1.receiveAttack(7, 8);
     expect(ship3.isSunk()).toBe(true);
+
+    console.log(gameboard1)
   });
 
   const ship4 = Ship(2);
@@ -327,6 +329,25 @@ describe("test Gameboard receiveAttack method", () => {
       [0, 0, 0, 0, 0, 0, "X", "X", 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, "X", "X"],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, "X"]]);
+  });
+
+  const gameboard4 = Gameboard();
+
+  test("test more missed attacks on the gameboard", () => {
+    gameboard4.receiveAttack(0, 0);
+
+
+    expect(gameboard4.board).toEqual([
+      ["X", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]);
   });
 });
 

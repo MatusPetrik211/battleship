@@ -235,7 +235,7 @@ describe("test Gameboard receiveAttack method", () => {
 
   gameboard1.placeShip(ship1, 0, 0);
   gameboard1.placeShip(ship2, 9, 9);
-  gameboard1.placeShip(ship3, 5, 8);
+  gameboard1.placeShip(ship3, 4, 7);
 
   test("test for horizontally placed ships", () => {
     expect(ship1.isSunk()).toBe(false);
@@ -252,17 +252,16 @@ describe("test Gameboard receiveAttack method", () => {
     gameboard1.receiveAttack(8, 9);
     expect(ship2.isSunk()).toBe(true);
 
-    console.log(gameboard1)
-    gameboard1.receiveAttack(5, 8);
-    expect(ship3.isSunk()).toBe(false);
-    gameboard1.receiveAttack(6, 8);
-    expect(ship3.isSunk()).toBe(false);
-    gameboard1.receiveAttack(8, 8);
-    expect(ship3.isSunk()).toBe(false);
-    gameboard1.receiveAttack(7, 8);
-    expect(ship3.isSunk()).toBe(true);
+    console.log(gameboard1);
 
-    console.log(gameboard1)
+    gameboard1.receiveAttack(4, 7);
+    expect(ship3.isSunk()).toBe(false);
+    gameboard1.receiveAttack(5, 7);
+    expect(ship3.isSunk()).toBe(false);
+    gameboard1.receiveAttack(7, 7);
+    expect(ship3.isSunk()).toBe(false);
+    gameboard1.receiveAttack(6, 7);
+    expect(ship3.isSunk()).toBe(true);
   });
 
   const ship4 = Ship(2);

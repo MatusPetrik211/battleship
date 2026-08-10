@@ -253,9 +253,9 @@ describe("test Gameboard receiveAttack method", () => {
     expect(ship2.isSunk()).toBe(true);
 
     expect(ship3.isSunk()).toBe(false);
-    gameboard1.receiveAttack(4, 7);
+    gameboard1.receiveAttack(9, 7);
     expect(ship3.isSunk()).toBe(false);
-    gameboard1.receiveAttack(5, 7);
+    gameboard1.receiveAttack(8, 7);
     expect(ship3.isSunk()).toBe(false);
     gameboard1.receiveAttack(7, 7);
     expect(ship3.isSunk()).toBe(false);

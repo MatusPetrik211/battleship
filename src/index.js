@@ -59,9 +59,6 @@ computerBlocks.forEach(block => {
 
         instructions.style.visibility = "hidden";
 
-        block.style.backgroundImage = `url(${closeBtn})`;
-        block.style.backgroundSize = "100%";
-
         const parentColumn = block.parentElement;
         const gameboard = parentColumn.parentElement;
 
@@ -71,27 +68,30 @@ computerBlocks.forEach(block => {
         const columnHuman = getRandomPos();
         const rowHuman = getRandomPos();
 
-         if ((computerPlayer.gameboard.board[rowComputer][columnComputer] === 'X') || 
-            (humanPlayer.gameboard.board[rowHuman][columnHuman] === 'X')) {
-            alert("You already attacked this spot!");
+        if ((computerPlayer.gameboard.board[rowComputer][columnComputer] === 'X') || (humanPlayer.gameboard.board[rowHuman][columnHuman] === 'X')) {
             return;
-        }
-            
+        } 
+        
+        // console.log("first if statement");
         if (computerPlayer.gameboard.board[rowComputer][columnComputer] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
+        // console.log("second if statement");
         if (humanPlayer.gameboard.board[rowHuman][columnHuman] === 1) {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
-
+        // console.log("X added into cell" + count);
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;
+
+        block.style.backgroundImage = `url(${closeBtn})`;
+        block.style.backgroundSize = "100%";
 
         humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);

@@ -72,21 +72,18 @@ computerBlocks.forEach(block => {
             return;
         } 
         
-        // console.log("first if statement");
         if (computerPlayer.gameboard.board[rowComputer][columnComputer] === 1) {
             block.style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             block.style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
-        // console.log("second if statement");
         if (humanPlayer.gameboard.board[rowHuman][columnHuman] === 1) {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 99%, 49%)`;
         } else {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
 
-        // console.log("X added into cell" + count);
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;
 

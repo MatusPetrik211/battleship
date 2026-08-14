@@ -4,7 +4,7 @@ import closeBtn from "./icons/close.png";
 
 const BOARD_SIZE = 10;
 const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
-let PLAYER_BOARD_SET = false;
+let playerBoardSet = false;
 
 function fillGameboards(gameboardDivs) {
     for (const gameboardDiv of gameboardDivs) {
@@ -41,12 +41,12 @@ randomBtn.addEventListener("click", () => {
     getRandomPlacement(computerPlayer);
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
 
-    PLAYER_BOARD_SET = true;
+    playerBoardSet = true;
 });
 
 computerBlocks.forEach(block => {
     block.addEventListener("click", () => {
-        if (!PLAYER_BOARD_SET) {
+        if (!playerBoardSet) {
             alert("Before launching an attack you need to set your board first");
             return;
         }

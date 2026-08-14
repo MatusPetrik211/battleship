@@ -10,21 +10,15 @@ function fillGameboards(gameboardDivs) {
     for (const gameboardDiv of gameboardDivs) {
         const isComputerBoard = gameboardDiv.classList.contains("computer-gameboard");
 
-        for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let row = 0; row < BOARD_SIZE; row++) {
             const column = document.createElement('div');
             column.classList.add('column');
             gameboardDiv.appendChild(column);
 
-            for (let j = 0; j < BOARD_SIZE; j++) {
+            for (let col = 0; col < BOARD_SIZE; col++) {
                 const block = document.createElement('div');
                 block.classList.add("block");
-
-                if (isComputerBoard) {
-                    block.classList.add("computer-block");
-                } else {
-                    block.classList.add("player-block");
-                }
-
+                block.classList.add(isComputerBoard ? "computer-block" : "player-block");
                 column.appendChild(block);
             }
         }

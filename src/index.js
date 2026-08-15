@@ -4,6 +4,8 @@ import closeBtn from "./icons/close.png";
 
 const BOARD_SIZE = 10;
 const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
+const humanPlayer = HumanPlayer();
+const computerPlayer = ComputerPlayer();
 let playerBoardSet = false;
 
 function fillGameboards(gameboardDivs) {
@@ -25,6 +27,49 @@ function fillGameboards(gameboardDivs) {
     }
 }
 
+function getRandomPos(boardSize = BOARD_SIZE) {
+    return Math.floor(Math.random() * boardSize);
+}
+
+function getRandomRotation() {
+    return Math.random() > 0.5 ? "V" : "H";
+}
+
+function displayShips(gameboard, gameboardDiv) {
+    for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let j = 0; j < BOARD_SIZE; j++) {
+            if (gameboard[i][j] === 1) {
+                gameboardDiv.children[j].children[i].style.backgroundColor = "black";
+            }
+        }
+    }
+}
+
+function clearGameboard(gameboard, gameboardDiv) {
+    for (const arr of gameboard.board) {
+        arr.fill(0);
+    }
+
+    for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let j = 0; j < BOARD_SIZE; j++) {
+            gameboardDiv.children[j].children[i].style.backgroundColor = "white";
+        }
+    }
+}
+
+function getRandomPlacement(player) {
+    clearGameboard(player.gameboard ,gameboards[0]);
+
+    const ships = SHIP_LENGTHS.map((length) => Ship(length));
+    for (const ship of ships) {
+        let playerX = getRandomPos();
+        let playerY = getRandomPos();
+        let playerRotation =  getRandomRotation();
+        
+        player.gameboard.placeShip(ship, playerX, playerY, playerRotation);
+    }
+}
+
 const gameboards = document.querySelectorAll(".gameboard");
 fillGameboards(gameboards);
 
@@ -32,9 +77,6 @@ const randomBtn = document.querySelector(".random-btn");
 const computerBlocks = document.querySelectorAll(".computer-block");
 const playerBlocks = document.querySelectorAll(".player-block");
 const instructions = document.querySelector(".instructions");
-
-const humanPlayer = HumanPlayer();
-const computerPlayer = ComputerPlayer();
 
 randomBtn.addEventListener("click", () => { 
     getRandomPlacement(humanPlayer);
@@ -88,50 +130,3 @@ computerBlocks.forEach(block => {
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);
     });
 });
-
-function getRandomPos(boardSize = BOARD_SIZE) {
-    return Math.floor(Math.random() * boardSize);
-}
-
-function getRandomRotation() {
-    return Math.random() > 0.5 ? "V" : "H";
-}
-
-
-
-function displayShips(gameboard, gameboardDiv) {
-    for (let i = 0; i < BOARD_SIZE; i++) {
-        for (let j = 0; j < BOARD_SIZE; j++) {
-            if (gameboard[i][j] === 1) {
-                gameboardDiv.children[j].children[i].style.backgroundColor = "black";
-            }
-        }
-    }
-}
-
-function clearGameboard(gameboard, gameboardDiv) {
-    for (const arr of gameboard.board) {
-        arr.fill(0);
-    }
-
-    for (let i = 0; i < BOARD_SIZE; i++) {
-        for (let j = 0; j < BOARD_SIZE; j++) {
-            gameboardDiv.children[j].children[i].style.backgroundColor = "white";
-        }
-    }
-}
-
-function getRandomPlacement(player) {
-    clearGameboard(player.gameboard ,gameboards[0]);
-
-    const ships = SHIP_LENGTHS.map((length) => Ship(length));
-    for (const ship of ships) {
-        let playerX = getRandomPos();
-        let playerY = getRandomPos();
-        let playerRotation =  getRandomRotation();
-        
-        player.gameboard.placeShip(ship, playerX, playerY, playerRotation);
-    }
-}
-
-

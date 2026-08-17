@@ -7,6 +7,7 @@ const SHIP_LENGTHS = [1, 1, 2, 3, 4, 5];
 const humanPlayer = HumanPlayer();
 const computerPlayer = ComputerPlayer();
 let playerBoardSet = false;
+let usedCoords = [];
 
 function fillGameboards(gameboardDivs) {
     for (const gameboardDiv of gameboardDivs) {
@@ -101,8 +102,17 @@ computerBlocks.forEach(block => {
         const columnComputer = Array.from(gameboard.children).indexOf(parentColumn);
         const rowComputer = Array.from(parentColumn.children).indexOf(block);
 
-        const columnHuman = getRandomPos();
-        const rowHuman = getRandomPos();
+        let columnHuman = getRandomPos();
+        let rowHuman = getRandomPos();
+
+        do {
+            columnHuman = getRandomPos();
+            rowHuman = getRandomPos();
+        } while (usedCoords.some(coords => 
+            coords[0] === rowHuman && coords[1] === columnHuman
+        ));
+
+        usedCoords.push([rowHuman, columnHuman]);
 
         if ((computerPlayer.gameboard.board[rowComputer][columnComputer] === 'X') || (humanPlayer.gameboard.board[rowHuman][columnHuman] === 'X')) {
             return;

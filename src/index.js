@@ -94,6 +94,11 @@ computerBlocks.forEach(block => {
             return;
         }
 
+        if (usedCoords.length >= BOARD_SIZE * BOARD_SIZE) {
+            alert("Game Over - All positions are taken!");
+            return;
+        }
+
         instructions.style.visibility = "hidden";
 
         const parentColumn = block.parentElement;
@@ -102,17 +107,14 @@ computerBlocks.forEach(block => {
         const columnComputer = Array.from(gameboard.children).indexOf(parentColumn);
         const rowComputer = Array.from(parentColumn.children).indexOf(block);
 
-        let columnHuman = getRandomPos();
-        let rowHuman = getRandomPos();
+        let rowHuman, columnHuman;
 
         do {
-            columnHuman = getRandomPos();
             rowHuman = getRandomPos();
+            columnHuman = getRandomPos();
         } while (usedCoords.some(coords => 
             coords[0] === rowHuman && coords[1] === columnHuman
         ));
-
-        usedCoords.push([rowHuman, columnHuman]);
 
         if ((computerPlayer.gameboard.board[rowComputer][columnComputer] === 'X') || (humanPlayer.gameboard.board[rowHuman][columnHuman] === 'X')) {
             return;
@@ -129,6 +131,8 @@ computerBlocks.forEach(block => {
         } else {
             playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundColor = `hsl(0, 0%, 80%)`;
         }
+
+        usedCoords.push([rowHuman, columnHuman]);
 
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundImage = `url(${closeBtn})`;
         playerBlocks[columnHuman * BOARD_SIZE + rowHuman].style.backgroundSize = `100%`;

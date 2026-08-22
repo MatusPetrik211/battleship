@@ -54,13 +54,12 @@ function clearGameboard(gameboard, gameboardDiv) {
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
             gameboardDiv.children[j].children[i].style.backgroundColor = "white";
+            gameboardDiv.children[j].children[i].style.backgroundImage = "None";
         }
     }
 }
 
 function getRandomPlacement(player) {
-    clearGameboard(player.gameboard ,gameboards[0]);
-
     const ships = SHIP_LENGTHS.map((length) => Ship(length));
     for (const ship of ships) {
         let playerX = getRandomPos();
@@ -80,9 +79,12 @@ const playerBlocks = document.querySelectorAll(".player-block");
 const instructions = document.querySelector(".instructions");
 
 randomBtn.addEventListener("click", () => { 
+    clearGameboard(humanPlayer.gameboard ,gameboards[0]);
+    clearGameboard(computerPlayer.gameboard ,gameboards[1]);
     getRandomPlacement(humanPlayer);
     getRandomPlacement(computerPlayer);
     displayShips(humanPlayer.gameboard.board, gameboards[0]);
+    usedCoords = [];
 
     playerBoardSet = true;
 });

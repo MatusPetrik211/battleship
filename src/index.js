@@ -145,9 +145,6 @@ computerBlocks.forEach(block => {
         humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);
 
-        console.log(humanPlayer.gameboard.board);
-        console.log(computerPlayer.gameboard.board);
-
         if (humanPlayer.gameboard.allShipsSunk() && computerPlayer.gameboard.allShipsSunk()) {
             alert("DRAW");
         } else if (humanPlayer.gameboard.allShipsSunk()) {

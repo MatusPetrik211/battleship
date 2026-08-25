@@ -40,6 +40,7 @@ function endGame() {
     clearGameboard(humanPlayer.gameboard ,gameboards[0]);
     clearGameboard(computerPlayer.gameboard ,gameboards[1]);
     usedCoords = [];
+    playerBoardSet = false;
 }
 
 function displayShips(gameboard, gameboardDiv) {
@@ -153,11 +154,11 @@ computerBlocks.forEach(block => {
 
         console.log(humanPlayer.gameboard.board);
 
-        if (humanPlayer.gameboard.allShipsSunk()) {
-            alert("You've LOST :(");
-            endGame();
-        } else if (computerPlayer.gameboard.allShipsSunk()) {
+        if (computerPlayer.gameboard.allShipsSunk()) {
             alert("You've WON :D");
+            endGame();
+        }  else if (humanPlayer.gameboard.allShipsSunk()) {
+            alert("You've LOST :(");
             endGame();
         }
     });

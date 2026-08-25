@@ -36,6 +36,12 @@ function getRandomRotation() {
     return Math.random() > 0.5 ? "V" : "H";
 }
 
+function endGame() {
+    clearGameboard(humanPlayer.gameboard ,gameboards[0]);
+    clearGameboard(computerPlayer.gameboard ,gameboards[1]);
+    usedCoords = [];
+}
+
 function displayShips(gameboard, gameboardDiv) {
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
@@ -145,12 +151,14 @@ computerBlocks.forEach(block => {
         humanPlayer.gameboard.receiveAttack(columnHuman, rowHuman);
         computerPlayer.gameboard.receiveAttack(columnComputer, rowComputer);
 
-        if (humanPlayer.gameboard.allShipsSunk() && computerPlayer.gameboard.allShipsSunk()) {
-            alert("DRAW");
-        } else if (humanPlayer.gameboard.allShipsSunk()) {
+        console.log(humanPlayer.gameboard.board);
+
+        if (humanPlayer.gameboard.allShipsSunk()) {
             alert("You've LOST :(");
+            endGame();
         } else if (computerPlayer.gameboard.allShipsSunk()) {
             alert("You've WON :D");
+            endGame();
         }
     });
 });

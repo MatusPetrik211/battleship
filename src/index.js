@@ -41,6 +41,7 @@ function endGame() {
     clearGameboard(computerPlayer.gameboard ,gameboards[1]);
     usedCoords = [];
     playerBoardSet = false;
+    instructions.style.visibility = "visible";
 }
 
 function displayShips(gameboard, gameboardDiv) {

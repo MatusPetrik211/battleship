@@ -188,11 +188,23 @@ const Gameboard = () => {
     return ships.every(ship => ship.isSunk() === true);
   }
 
+  function reset() {
+
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        board[i][j] = 0;
+      }
+    }
+  
+    ships.length = 0;
+  }
+
   return {
     board,
     placeShip,
     receiveAttack,
     allShipsSunk,
+    reset,
   }
 }
 

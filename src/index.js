@@ -59,6 +59,8 @@ function clearGameboard(gameboard, gameboardDiv) {
         arr.fill(0);
     }
 
+    gameboard.reset();
+
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
             gameboardDiv.children[j].children[i].style.backgroundColor = "white";
